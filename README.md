@@ -1,84 +1,101 @@
-GM Counter Characteristics & Counting Statistics Analysis
+# GM Counter Characteristics & Counting Statistics Analysis
+**Geiger–Müller Tube Plateau Curve, Poisson vs Gaussian Fitting, and Chi-Square Hypothesis Testing**
 
-Geiger–Müller Tube Plateau Curve, Poisson vs Gaussian Fitting, and Chi-Square Hypothesis Testing
+---
 
-📌 Overview
-
+## 📌 Overview
 This project analyzes the behavior of a Geiger–Müller (GM) radiation detector through:
 
-GM plateau curve measurement
+- GM plateau curve measurement  
+- Operating voltage selection  
+- Counting statistics at **5 s**, **10 s**, and **20 s**  
+- Fitting experimental data to **Poisson** and **Gaussian** distributions  
+- Performing **chi-square goodness-of-fit tests**  
+- Computing **right-tail probabilities (p-values)**  
+- Visualizing distributions using Python  
 
-Operating voltage selection
+This project demonstrates **experimental data analysis**, **statistical modeling**, and **scientific computation skills**.
 
-Counting statistics at 5 s, 10 s, and 20 s
+---
 
-Fitting data to Poisson and Gaussian distributions
+## ⚡ GM Plateau Curve
 
-Performing chi-square goodness-of-fit tests
+![GM Plateau Curve](plots/gm_char.png)
 
-Computing right-tail probabilities (p-values)
+**Figure 1 — GM Plateau Curve:**  
+The plateau region appears between **480–580 V**, where the GM tube count rate becomes nearly constant.  
+A linear fit across this region yields a small slope, indicating stable operation.  
+The chosen operating voltage for counting measurements is **540 V**, near the plateau center.
 
-Visualizing distributions with error bars and theoretical curves
+---
 
-This project demonstrates experimental data analysis, statistical modeling, and scientific Python skills.
+## 📊 Counting Statistics Analysis
 
-⚡ GM Plateau Curve
+### 5-Second Interval
+![5s Counting Statistics](plots/5_sec_count_stat.png)
 
-This plot shows the count rate vs applied voltage for the GM tube.
-
-Figure 1 — GM Plateau Curve:
-The plateau region is observed between approximately 480–580 V, where the count rate remains nearly constant. A linear fit gives a small negative slope, indicating stable operation. The operating voltage for all counting measurements was chosen near 540 V.
-
-📊 Counting Statistics Analysis
-5-Second Interval
-
-Figure 2 — 5-Second Counting Statistics:
-The measured distribution matches the Poisson model extremely well.
-
-Mean = 1.62
-
-Chi-square (Poisson) = 2.72
-
-Right-tail p ≈ 0.84 (excellent fit)
+**Figure 2 — 5-Second Counting Statistics:**  
+The measured distribution matches the Poisson model extremely well.  
+- Mean = **1.62**  
+- Chi-square (Poisson) = **2.72**  
+- Right-tail p ≈ **0.84**  
 Gaussian approximation is not used due to low mean.
 
-10-Second Interval
+---
 
-Figure 3 — 10-Second Counting Statistics:
-The Poisson curve fits the measured distribution better than the Gaussian curve.
+### 10-Second Interval
+![10s Counting Statistics](plots/10_sec_count_stat.png)
 
-Mean = 3.505
+**Figure 3 — 10-Second Counting Statistics:**  
+Poisson provides a significantly better fit than Gaussian.  
+- Mean = **3.505**  
+- Chi-square (Poisson) = **7.44** (p ≈ 0.5916)  
+- Chi-square (Gaussian) = **15.69** (p ≈ 0.0737)
 
-Chi-square (Poisson) = 7.44 (p ≈ 0.59)
+---
 
-Chi-square (Gaussian) = 15.69 (p ≈ 0.07)
+### 20-Second Interval
+![20s Counting Statistics](plots/20_sec_count_stat.png)
 
-Poisson still strongly preferred.
+**Figure 4 — 20-Second Counting Statistics:**  
+Even at higher mean counts, Poisson remains the superior model.  
+- Mean = **6.419**  
+- Chi-square (Poisson) = **21.23** (p ≈ 0.1294)  
+- Chi-square (Gaussian) = **44.44** (p ≈ 9.35×10⁻⁵) → Gaussian rejected
 
-20-Second Interval
+---
 
-Figure 4 — 20-Second Counting Statistics:
-Even at higher mean counts, Poisson matches better than Gaussian.
+## 📐 Chi-Square Results Summary
 
-Mean = 6.419
+| Interval | Mean | χ² (Poisson) | p-value (Poisson) | χ² (Gaussian) | p-value (Gaussian) | Best Fit |
+|---------|------|--------------|-------------------|----------------|---------------------|----------|
+| 5 sec   | 1.62 | 2.72         | 0.8429            | —              | —                   | Poisson |
+| 10 sec  | 3.505| 7.44         | 0.5916            | 15.69          | 0.0737              | Poisson |
+| 20 sec  | 6.419| 21.23        | 0.1294            | 44.44          | 9.35×10⁻⁵           | Poisson |
 
-Chi-square (Poisson) = 21.23 (p ≈ 0.129)
+---
 
-Chi-square (Gaussian) = 44.44 (p ≈ 9.35×10⁻⁵) → rejected
+## 🧪 Conclusion
+- GM tube counts follow the **Poisson distribution** at all tested intervals.  
+- Gaussian model fails, especially at low and medium means.  
+- Plateau region accurately identified at **480–580 V**.  
+- Operating voltage set at **540 V** ensures stability for counting experiments.  
+- Statistical tests confirm radioactive decay as an independent, random process.
 
-Poisson model remains valid; Gaussian approximation fails due to insufficiently large mean.
+---
 
-📐 Chi-Square Results Summary
-Interval	Mean	χ² (Poisson)	p-value (Poisson)	χ² (Gaussian)	p-value (Gaussian)	Best Fit
-5 sec	1.62	2.72	0.8429	—	—	Poisson
-10 sec	3.505	7.44	0.5916	15.69	0.0737	Poisson
-20 sec	6.419	21.23	0.1294	44.44	9.35×10⁻⁵	Poisson
-🧪 Conclusion
+## 🛠️ Skills Demonstrated
+- Poisson & Gaussian probability distribution modeling  
+- Chi-square hypothesis testing  
+- Error analysis and uncertainty propagation  
+- Scientific visualization (Matplotlib)  
+- Experimental data processing and validation  
+- Statistical reasoning and interpretation  
+- Python-based scientific computing  
+- Research-style documentation  
 
-GM tube counting behaves as expected: Poisson distribution fits all intervals well.
+---
 
-Gaussian approximation fails, especially for low and moderate mean values.
-
-Plateau region carefully identified at 480–580 V, with 540 V selected as stable operating voltage.
-
-Statistical testing confirms the fundamental properties of radioactive decay (independent random events).
+## 👤 Author
+**Debayan Mal**  
+Physics & Data Analysis Project
